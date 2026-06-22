@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问鼎app · 稳定工具</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafaf9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #1e1e1e;
+        }
+
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* hero 横幅 — 杂志式跨栏背景 */
+        .hero {
+            background: linear-gradient(160deg, #eae7e1 0%, #f3f0ea 100%);
+            margin: 0 -1.5rem 2.8rem;
+            padding: 3.8rem 1.5rem 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 10%;
+            width: 80%;
+            height: 1px;
+            background: #d0ccc4;
+            opacity: 0.4;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 360;
+            letter-spacing: 0.02em;
+            color: #26221c;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .subline {
+            font-size: 0.88rem;
+            color: #5a544b;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-weight: 400;
+            border-top: 1px solid #c5bfb5;
+            display: inline-block;
+            padding-top: 0.5rem;
+            margin-top: 0.3rem;
+            opacity: 0.7;
+        }
+
+        .hero .subline span {
+            background: #d9d2c7;
+            color: #2b2721;
+            padding: 0 0.35rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            margin-left: 0.2rem;
+        }
+
+        /* 背景说明块 — 窄栏 + 斜体 */
+        .context-block {
+            background: #ffffff;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.8rem;
+            border-left: 4px solid #c5b9a8;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .context-block p {
+            font-size: 0.95rem;
+            color: #3d3830;
+            font-style: italic;
+            font-weight: 350;
+        }
+
+        .context-block p strong {
+            font-style: normal;
+            font-weight: 500;
+            color: #1f1c17;
+        }
+
+        /* 三级正文标题 */
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 440;
+            letter-spacing: 0.01em;
+            border-bottom: 1px solid #e0dad2;
+            padding-bottom: 0.3rem;
+            margin: 2.6rem 0 0.9rem;
+            color: #2b2721;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 450;
+            margin: 1.8rem 0 0.4rem;
+            color: #36312a;
+        }
+
+        .intro-text p {
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            color: #2d2a25;
+        }
+
+        .intro-text a {
+            color: #2d5c4b;
+            text-decoration: none;
+            border-bottom: 1px solid #b6cdc0;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .intro-text a:hover {
+            border-bottom-color: #1f3f34;
+            color: #1a3d2f;
+        }
+
+        .intro-text .highlight-mild {
+            background: #f2efe9;
+            padding: 0 0.2rem;
+            font-style: normal;
+        }
+
+        /* 简洁卡片式特点 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.2rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        .feature-item {
+            background: #f7f5f1;
+            padding: 0.8rem 1rem;
+            border-radius: 2px;
+            font-size: 0.88rem;
+            color: #2b2721;
+            border-left: 3px solid #cdc3b6;
+        }
+
+        .feature-item strong {
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            color: #1f1c17;
+        }
+
+        /* FAQ 摘要 — 极简折叠感 */
+        .faq-brief {
+            margin: 2.4rem 0 1.8rem;
+            padding: 0.5rem 0;
+            border-top: 1px dashed #d4cec4;
+            border-bottom: 1px dashed #d4cec4;
+        }
+
+        .faq-brief dt {
+            font-weight: 450;
+            font-size: 0.9rem;
+            margin: 0.8rem 0 0.2rem;
+            color: #2b2721;
+            cursor: default;
+        }
+
+        .faq-brief dd {
+            font-size: 0.86rem;
+            color: #4d473e;
+            margin-left: 0.2rem;
+            padding-left: 0.5rem;
+            border-left: 1px solid #d3cbc0;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 页尾访问提示 — 干净、窄 */
+        .footer-note {
+            margin-top: 3.2rem;
+            padding: 1.8rem 0 0.6rem;
+            border-top: 1px solid #ddd8cf;
+            text-align: center;
+            font-size: 0.88rem;
+            color: #4f4940;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-note a {
+            color: #2d5c4b;
+            text-decoration: none;
+            border-bottom: 1px solid #b3c7bb;
+            font-weight: 430;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #1a3d2f;
+            color: #173729;
+        }
+
+        .footer-note .meta {
+            display: block;
+            margin-top: 0.9rem;
+            font-size: 0.75rem;
+            color: #9c9489;
+            letter-spacing: 0.04em;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            .page {
+                padding: 1.8rem 1rem 3rem;
+            }
+            .hero {
+                margin: 0 -1rem 2rem;
+                padding: 2.5rem 1rem 2rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            .context-block {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 横幅 -->
+    <div class="hero">
+        <h1>问鼎</h1>
+        <div class="subline">稳定工具 · 日常架构 <span>v3</span></div>
+    </div>
+
+    <!-- 背景说明：以简短背景引入主题 -->
+    <div class="context-block">
+        <p><strong>背景</strong> 在移动工具类软件领域，持续可用与克制设计是两条并行的基线。<strong>问鼎app</strong> 自早期版本就专注于降低系统层面的不必要干预，通过精简逻辑与适度反馈，为日常高频操作提供一个稳定的中间层。它的演进并非追逐功能堆叠，而是对基础稳定性与适配效率的反复打磨。</p>
+    </div>
+
+    <!-- 三段自然介绍 + 混合特点 -->
+    <div class="intro-text">
+
+        <h2>一、模块化稳定基底</h2>
+        <p>无论处于何种 Android 版本环境，<a href="https://android-wending.com">问鼎app</a> 的底层均采用轻量级调度策略，避免常驻后台的过度占用。其核心交互被拆解为若干独立单元：环境检测、权限引导、模式切换，每一环节均保持低耦合。用户可以在不阅读冗长说明的前提下，通过直觉操作完成配置。这种设计思路借鉴了工业软件中的“单一职责”原则，减少因模块干扰导致的意外行为。</p>
+
+        <h2>二、场景适配与信息透明</h2>
+        <p>实际使用中，不同设备厂商的定制系统往往带来差异化的限制。问鼎app 针对国内主流 UI 层进行了针对性兼容，但并未将适配过程暴露为复杂选项。相反，它通过简短的诊断摘要告知当前状态——例如“权限到位”“待优化”等中性描述，避免使用警示性语气。这种克制的反馈机制让使用者能够自行判断下一步操作，而非被引导至非必要设置。</p>
+
+        <h3>典型场景特征</h3>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong>低介入运行</strong>
+                配置完成后不主动弹窗，仅保留必要状态指示。
+            </div>
+            <div class="feature-item">
+                <strong>版本适配日志</strong>
+                每次更新附带面向用户的兼容性说明，而非仅开发者变更。
+            </div>
+            <div class="feature-item">
+                <strong>权限回溯</strong>
+                若系统回收授权，app 在下次启动时以静态提示展示，而非强制请求。
+            </div>
+            <div class="feature-item">
+                <strong>离线优先</strong>
+                核心功能不依赖远端服务器，本地决策链完整。
+            </div>
+        </div>
+
+        <h2>三、版本迭代中的取舍</h2>
+        <p>在过去多个中间版本中，维护团队选择移除了一些使用率低于阈值的实验性功能，同时将节省下来的资源用于提升基础模块的响应速度。例如，在 Android 12 及之后版本中，<a href="https://android-wending.com">问鼎app</a> 针对前台服务类型限制做了预先适配，确保已有功能不被新系统策略阻断。这种务实的迭代节奏，使得 app 在长期使用中保持了较低的错误报告率与正向用户反馈。</p>
+
+        <!-- FAQ 摘要片段 -->
+        <dl class="faq-brief">
+            <dt>问：问鼎app 是否需要 root 权限？</dt>
+            <dd>不需要。app 仅在标准 Android 框架内操作，不涉及系统级修改。</dd>
+            <dt>问：多个 Android 版本之间配置是否会丢失？</dt>
+            <dd>本地偏好设置采用独立存储格式，跨版本升级时自动迁移，极少出现异常。</dd>
+            <dt>问：如何确认当前版本是否最新？</dt>
+            <dd>app 内置轻量版本核对机制，仅在用户主动触发时检查，不静默联网。</dd>
+        </dl>
+
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-note">
+        若需进一步了解功能细节与更新记录，可查阅
+        <a href="https://android-wending.com">问鼎app</a>
+        的官方页面。
+        <span class="meta">面向日常 · 稳定优先</span>
+    </div>
+
+</div>
+</body>
+</html>
